@@ -72,9 +72,10 @@ const Login = () => {
                 </section>
             ) : (
                 <section>
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <div className='sec_in'>
-                    <h1>Sign In</h1>
+                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    
+                    <h1 className='header_name'>Sign In</h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">Username</label>
                         <input
