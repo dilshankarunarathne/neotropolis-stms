@@ -1,12 +1,10 @@
 import React from 'react'
-import './Adduser.css'
+import './AddAdmin.css'
 
-const Adduser = () => {
+const AddAdmin = () => {
   return (
-    <div id='adduser' className='adduser'>
-       
-    
-        <form onSubmit={onSubmit} action="" className="adduser">
+    <div id='AddAdmin' className='AddAdmin'>
+        <form onSubmit={onSubmit} action="" className="AddAdmin">
 
                 <label htmlFor="">first</label>
                 <input type="text" id='name' name='name'/>
@@ -23,13 +21,16 @@ const Adduser = () => {
                 <label htmlFor="">Email</label>
                 <input type="text" id='name' name='name'/>
 
+                <label htmlFor="">Admin Type</label>
+                <input type="text" id='name' name='name'/>
+
                 <label htmlFor="">Password</label>
                 <input type="text" id='name' name='name'/>
 
                 <label htmlFor="">Confirm your Password</label>
                 <input type="text" id='name' name='name'/><br/>
 
-                <label htmlFor="">Add User</label>
+                <label htmlFor="">Add Admin</label>
                 <input type="text" id='name' name='name'/>
 
 
@@ -41,4 +42,7 @@ const Adduser = () => {
   )
 }
 
-export default Adduser
+
+
+
+export default AddAdmin
