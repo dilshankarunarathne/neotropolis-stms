@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import AuthContext from './context/AuthProvider';
-import Register from './components/pages/Register';
+import Register from './components/pages/SignUp';
+import Navbar from './components/pages/Navbar';
 import Login from './components/pages/Login';
 import Home from './components/pages/Home'; 
 

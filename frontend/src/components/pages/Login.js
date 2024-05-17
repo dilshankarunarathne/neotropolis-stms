@@ -88,7 +88,7 @@ const Login = () => {
                             required
                         />
 
-                        <label htmlFor="password">DTP Code</label>
+                        <label htmlFor="code">DTP Code</label>
                         <input
                             type="text"
                             id="dtp_code"
@@ -99,7 +99,7 @@ const Login = () => {
                             required
                         />
 
-                        <label htmlFor="username">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input
                             type="password"
                             id="password"
