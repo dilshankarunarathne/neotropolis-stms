@@ -35,8 +35,8 @@ class UserDAO:
         if row is None:
             return None
         return UserInDB(**dict(
-            zip(['id', 'username', 'email', 'is_admin', 'hashed_password', 'mobile', 'fist_name', 'last_name',
-                 'dtp_token'], row)))
+            zip(['first_name', 'last_name', 'username', 'email', 'mobile', 'is_admin', 'id',
+                 'hashed_password',  'dtp_token'], row)))
 
     def get_last_user_id(self) -> int:
         cnx = self.db_connection.get_connection()
