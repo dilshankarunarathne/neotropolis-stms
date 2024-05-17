@@ -47,7 +47,7 @@ async def add_location_route(
     return {"location": location}
 
 
-@router.get("/get_location")
+@router.get("/get_current_location")
 async def get_location_route(
         dtp_token: str = Form(...),
         token: str = Depends(oauth2_scheme)
@@ -71,3 +71,29 @@ async def get_location_route(
     location = get_location(dtp_token)
 
     return {"location": location}
+
+
+@router.get("/get_location_history")
+async def get_location_history_route(
+        dtp_token: str = Form(...),
+        token: str = Depends(oauth2_scheme)
+):
+    """
+    The endpoint for getting the location history
+
+    Returns:
+        (List[Location]) The location history
+
+    Raises:
+        HTTPException: if the user is not authorized
+
+    :param token:
+    :param dtp_token:
+
+    """
+    if await get_current_user(token) is None:
+        raise credentials_exception
+
+
+
+    pass
