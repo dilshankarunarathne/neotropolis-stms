@@ -4,6 +4,7 @@ import AuthContext from './context/AuthProvider';
 import Register from './Register';
 import Login from './Login';
 import Home from './components/pages/Home'; 
+import Adduser from './components/pages/Adduser';
 
 function Default() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Default />} />
+          <Route path="/Adduser" element={<Adduser/>} />
         </Routes>
       </main>
     </Router>
