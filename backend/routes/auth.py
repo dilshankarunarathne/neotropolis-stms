@@ -48,17 +48,20 @@ async def register_user(
     """
     The endpoint for registering a new user
 
-    Args:
-        username (str): the username of the user
-        email (str): the email of the user
-        password (str): the password of the user
-        is_admin (bool): whether the user is an admin
-
     Returns:
         (UserInDB) The user that was registered
 
     Raises:
         HTTPException: if the username already exists
+
+    :param is_admin:
+    :param password:
+    :param email:
+    :param username:
+    :param first_name:
+    :param last_name:
+    :param mobile:
+
     """
     if user_exists(username):
         raise HTTPException(
@@ -72,8 +75,13 @@ async def register_user(
         email=email,
         hashed_password=hashed_password,
         is_admin=is_admin,
+        mobile=mobile,
+        first_name=first_name,
+        last_name=last_name
     )
     add_new_user(user)
+
+    # TODO: generate a dtp token and return it
     return user
 
 
