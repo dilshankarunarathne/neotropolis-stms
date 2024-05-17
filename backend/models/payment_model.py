@@ -3,9 +3,10 @@ from typing import Optional
 from datetime import datetime
 
 
-class Location(BaseModel):
+class Payment(BaseModel):
     id: Optional[int] = None
-    dtp_token: str
-    latitude: float
-    longitude: float
+    amount: float
+    description: str
     timestamp: Optional[datetime] = None
+    dtp_token: str
+    u_id: int

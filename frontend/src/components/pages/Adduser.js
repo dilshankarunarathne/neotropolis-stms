@@ -2,6 +2,11 @@ import React from 'react'
 import './Adduser.css'
 
 const Adduser = () => {
+  const onSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission here
+  }
+
   return (
     <div id='adduser' className='adduser'>
        

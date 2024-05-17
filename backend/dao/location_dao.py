@@ -27,4 +27,14 @@ class LocationDAO:
         cursor.close()
         if result is None:
             return None
-        return Location(dtp_token=result[0], latitude=result[1], longitude=result[2])
+        return Location(id=result[0], dtp_token=result[1], latitude=result[2], longitude=result[3], timestamp=result[4])
+
+    def get_location_history(self, dtp_token: str):
+        cnx = self.db_connection.get_connection()
+        cursor = cnx.cursor()
+        query = "SELECT * FROM locations WHERE dtp_token = %s ORDER BY timestamp DESC"
+        values = (dtp_token,)
+        cursor.execute(query, values)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
