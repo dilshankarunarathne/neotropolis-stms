@@ -1,10 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import AuthContext from './context/AuthProvider';
-import Register from './components/pages/SignUp';
-import Navbar from './components/pages/Navbar';
 import Login from './components/pages/Login';
-import Home from './components/pages/Home'; 
 
 function Default() {
   const navigate = useNavigate();
@@ -20,9 +16,7 @@ function App() {
     <Router>
       <main className="App">
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="./componrnts/pages/Login" element={<Login />} />
           <Route path="/" element={<Default />} />
         </Routes>
       </main>
