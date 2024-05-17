@@ -24,13 +24,10 @@ function App() {
       <main className="App">
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+         
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Default />} />
-          <Route path="/Adduser" element={<Adduser/>} />
-          <Route path="/AddAdmin" element={<AddAdmin/>} />
-          <Route path="/UpdateUser" element={<UpdateUser/>} />
-          <Route path="/UpdateAdmin" element={<UpdateAdmin/>} />
+          
 
 
         </Routes>
