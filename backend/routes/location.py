@@ -2,7 +2,7 @@ from fastapi import APIRouter, Form, Depends
 
 from auth.authorize import oauth2_scheme, get_current_user, credentials_exception
 from models.location import Location
-from services.location_service import add_location, get_location
+from services.location_service import add_location, get_location, get_location_history
 
 router = APIRouter(
     prefix="/api/location",
@@ -94,6 +94,6 @@ async def get_location_history_route(
     if await get_current_user(token) is None:
         raise credentials_exception
 
+    location_history = get_location_history(dtp_token)
 
-
-    pass
+    return {"location_history": location_history}
