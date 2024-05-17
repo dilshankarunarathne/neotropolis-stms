@@ -14,9 +14,11 @@ class UserDAO:
         cnx = self.db_connection.get_connection()
         cursor = cnx.cursor()
         add_user = ("INSERT INTO users "
-                    "(id, username, email, is_admin, hashed_password, mobile, fist_name, last_name, dtp_token) "
+                    "(id, username, email, is_admin, hashed_password, mobile, "
+                    "first_name	, last_name, dtp_token) "
                     "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)")
-        data_user = (user.id, user.username, user.email, user.is_admin, user.hashed_password)
+        data_user = (user.id, user.username, user.email, user.is_admin, user.hashed_password,
+                     user.mobile, user.first_name, user.last_name, user.dtp_token)
         cursor.execute(add_user, data_user)
         cnx.commit()
         cursor.close()
@@ -24,7 +26,7 @@ class UserDAO:
     def get_user_by_username(self, username: str) -> UserInDB | None:
         cnx = self.db_connection.get_connection()
         cursor = cnx.cursor()
-        query = ("SELECT id, username, email, is_admin, hashed_password, mobile, fist_name, last_name, dtp_token "
+        query = ("SELECT * "
                  "FROM users "
                  "WHERE username = %s")
         cursor.execute(query, (username,))
