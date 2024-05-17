@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Form
 
 from auth.authorize import oauth2_scheme, get_current_user, credentials_exception
 from models.payment_model import Payment
-from services.payment_service import add_payment, remove_payment
+from services.payment_service import add_payment, remove_payment, get_payment_history
 
 router = APIRouter(
     prefix="/api/payment",
@@ -33,7 +33,22 @@ async def add_payment_route(
     return {"payment successful": amount, "description": description}
 
 
-@router.delete("/remove_payment")
+@router.get("/get_payment")
+async def get_payment_route(
+        dtp_token: str = Form(...),
+        token: str = Depends(oauth2_scheme)
+):
+    if await get_current_user(token) is None:
+        raise credentials_exception
+
+    payments = get_payment_history(dtp_token)
+
+    # TODO: check if the user is an admin
+
+    return payments
+
+
+@router.post("/remove_payment")
 async def remove_payment_route(
         p_id: int = Form(...),
         token: str = Depends(oauth2_scheme)
@@ -43,6 +58,6 @@ async def remove_payment_route(
 
     # TODO: check if the user is an admin
 
-    remove_payment(p_id)
+    deletion_successful = remove_payment(p_id)
 
-    return {"deleted payment": id}
+    return {"deleted": deletion_successful}

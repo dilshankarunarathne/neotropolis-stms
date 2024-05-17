@@ -27,4 +27,4 @@ class LocationDAO:
         cursor.close()
         if result is None:
             return None
-        return Location(dtp_token=result[0], latitude=result[1], longitude=result[2])
+        return Location(id=result[0], dtp_token=result[1], latitude=result[2], longitude=result[3], timestamp=result[4])

@@ -16,10 +16,22 @@ class PaymentDAO:
         cnx.commit()
         cursor.close()
 
-    def remove_payment(self, id: int):
+    def remove_payment(self, p_id: int):
         cnx = self.db_connection.get_connection()
         cursor = cnx.cursor()
         delete_payment = ("DELETE FROM payments WHERE id = %s")
-        cursor.execute(delete_payment, (id,))
+        cursor.execute(delete_payment, (p_id,))
+        rows_affected = cursor.rowcount
         cnx.commit()
         cursor.close()
+        return rows_affected > 0
+
+    def get_payment_history(self, dtp_token: str):
+        cnx = self.db_connection.get_connection()
+        cursor = cnx.cursor()
+        query = "SELECT * FROM payments WHERE dtp_token = %s ORDER BY timestamp DESC"
+        values = (dtp_token,)
+        cursor.execute(query, values)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
