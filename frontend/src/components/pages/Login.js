@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import AuthContext from "./context/AuthProvider";
+import AuthContext from "../../context/AuthProvider";
+import './login.css';
 
-import axios from './api/axios';
+import axios from '../../api/axios';
 const LOGIN_URL = 'http://localhost:8000/auth/login';
 
 const Login = () => {
@@ -72,9 +73,10 @@ const Login = () => {
             ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    <div className='sec_in'>
                     <h1>Sign In</h1>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="username">Username:</label>
+                        <label htmlFor="username">Username</label>
                         <input
                             type="text"
                             id="username"
@@ -85,7 +87,18 @@ const Login = () => {
                             required
                         />
 
-                        <label htmlFor="password">Password:</label>
+                        <label htmlFor="password">DTP Code</label>
+                        <input
+                            type="text"
+                            id="dtp_code"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setUser(e.target.value)}
+                            value={user}
+                            required
+                        />
+
+                        <label htmlFor="username">Password</label>
                         <input
                             type="password"
                             id="password"
@@ -93,14 +106,10 @@ const Login = () => {
                             value={pwd}
                             required
                         />
-                        <button>Sign In</button>
+                        <button>Login</button>
                     </form>
-                    <p>
-                        Need an Account?<br />
-                        <span className="line">
-                            <Link to="/signup">Sign Up</Link>
-                        </span>
-                    </p>
+                    </div>
+                    
                 </section>
             )}
         </>
