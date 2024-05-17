@@ -37,9 +37,12 @@ router = APIRouter(
 
 @router.post("/register")
 async def register_user(
+        first_name: str = Form(...),
+        last_name: str = Form(...),
         username: str = Form(...),
         email: str = Form(...),
         password: str = Form(...),
+        mobile: str = Form(...),
         is_admin=False
 ):
     """
