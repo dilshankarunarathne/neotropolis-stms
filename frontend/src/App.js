@@ -5,6 +5,9 @@ import Register from './components/pages/Register';
 import Login from './components/pages/Login';
 import Home from './components/pages/Home'; 
 import Adduser from './components/pages/Adduser';
+import AddAdmin from './components/pages/AddAdmin';
+import UpdateUser from './components/pages/UpdateUser';
+import UpdateAdmin from './components/pages/UpdateAdmin';
 
 function Default() {
   const navigate = useNavigate();
@@ -25,6 +28,11 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Default />} />
           <Route path="/Adduser" element={<Adduser/>} />
+          <Route path="/AddAdmin" element={<AddAdmin/>} />
+          <Route path="/UpdateUser" element={<UpdateUser/>} />
+          <Route path="/UpdateAdmin" element={<UpdateAdmin/>} />
+
+
         </Routes>
       </main>
     </Router>
