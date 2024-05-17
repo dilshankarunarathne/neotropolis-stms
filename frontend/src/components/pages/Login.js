@@ -13,6 +13,7 @@ const Login = () => {
 
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
+    const [dtp, setDtp] = useState(''); 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -94,8 +95,8 @@ const Login = () => {
                             id="dtp_code"
                             ref={userRef}
                             autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
+                            onChange={(e) => setDtp(e.target.value)}
+                            value={dtp}
                             required
                         />
 
