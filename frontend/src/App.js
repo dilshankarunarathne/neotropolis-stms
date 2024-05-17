@@ -8,7 +8,7 @@ import Login from './components/pages/Login';
 function Default() {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate('/home');
+    navigate('/Navbar');
   }, [navigate]);
 
   return null;
@@ -19,9 +19,7 @@ function App() {
     <Router>
       <main className="App">
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="./componrnts/pages/login" element={<Login />} />
           <Route path="/" element={<Default />} />
         </Routes>
       </main>
