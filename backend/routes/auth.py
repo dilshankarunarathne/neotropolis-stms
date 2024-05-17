@@ -5,6 +5,7 @@ from typing import Annotated
 from fastapi import APIRouter, Form, HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 
+from dtp.dtp_token import generate_dtp_token
 from models.user_model import UserInDB
 
 from auth.authorize import authenticate_user, oauth2_scheme
@@ -37,25 +38,31 @@ router = APIRouter(
 
 @router.post("/register")
 async def register_user(
+        first_name: str = Form(...),
+        last_name: str = Form(...),
         username: str = Form(...),
         email: str = Form(...),
         password: str = Form(...),
+        mobile: str = Form(...),
         is_admin=False
 ):
     """
     The endpoint for registering a new user
-
-    Args:
-        username (str): the username of the user
-        email (str): the email of the user
-        password (str): the password of the user
-        is_admin (bool): whether the user is an admin
 
     Returns:
         (UserInDB) The user that was registered
 
     Raises:
         HTTPException: if the username already exists
+
+    :param is_admin:
+    :param password:
+    :param email:
+    :param username:
+    :param first_name:
+    :param last_name:
+    :param mobile:
+
     """
     if user_exists(username):
         raise HTTPException(
@@ -63,15 +70,23 @@ async def register_user(
             detail="Username already exists",
         )
     hashed_password = get_password_hash(password)
+
+    dtp_token = generate_dtp_token()
+
     user = UserInDB(
         id=get_next_avail_id(),
         username=username,
         email=email,
         hashed_password=hashed_password,
         is_admin=is_admin,
+        mobile=mobile,
+        first_name=first_name,
+        last_name=last_name,
+        dtp_token=dtp_token
     )
     add_new_user(user)
-    return user
+
+    return {"user": user, "dtp_token": dtp_token}
 
 
 @router.post("/login")

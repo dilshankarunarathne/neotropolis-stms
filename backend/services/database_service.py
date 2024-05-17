@@ -1,9 +1,7 @@
 from config import config
-from models.user_model import User
+from dao.database_connection import DatabaseConnection
 
-from dao.user_dao import UserDAO
-
-dao = UserDAO(
+dao = DatabaseConnection(
     host=config.get("database", "database.host"),
     user=config.get("database", "database.user"),
     password=config.get("database", "database.password"),
