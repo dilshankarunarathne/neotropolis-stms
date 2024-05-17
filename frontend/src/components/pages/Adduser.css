@@ -1,0 +1,7 @@
+.adduser{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color: hsl(0, 33%, 96%);
+    font-size: 22px;
+}
