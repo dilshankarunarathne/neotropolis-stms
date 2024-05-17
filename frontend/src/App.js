@@ -8,6 +8,7 @@ import Adduser from './components/pages/Adduser';
 import AddAdmin from './components/pages/AddAdmin';
 import UpdateUser from './components/pages/UpdateUser';
 import UpdateAdmin from './components/pages/UpdateAdmin';
+import PaymentInfo from "./components/PaymentInfo";
 
 function Default() {
   const navigate = useNavigate();
@@ -31,8 +32,7 @@ function App() {
           <Route path="/AddAdmin" element={<AddAdmin/>} />
           <Route path="/UpdateUser" element={<UpdateUser/>} />
           <Route path="/UpdateAdmin" element={<UpdateAdmin/>} />
-
-
+          <Route path="/payment" element={<PaymentInfo/>} />
         </Routes>
       </main>
     </Router>

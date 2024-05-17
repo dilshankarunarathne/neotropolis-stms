@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/AuthProvider';
+import Navbar from '../Navbar';
 
 function Home() {
   const { auth } = useContext(AuthContext);
@@ -13,10 +14,10 @@ function Home() {
   }, [auth, navigate]);
 
     return (
-        <div>
-            <h1>Welcome to Godai!</h1>
-            <p>Unleashing AI for Rapid Prototyping and Streamlined Development</p>
-        </div>
+        <main>
+           <Navbar />
+            
+        </main>
     );
 }
 

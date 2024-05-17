@@ -1,15 +1,16 @@
 import { useRef, useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../../context/AuthProvider";
 import './login.css';
 
 import axios from '../../api/axios';
-const LOGIN_URL = 'http://localhost:8000/auth/login';
+const LOGIN_URL = 'http://localhost:8000/api/auth/login';
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
+    const navigate = useNavigate();
 
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
@@ -41,11 +42,16 @@ const Login = () => {
             console.log(JSON.stringify(response?.data.access_token));
     
             const accessToken = response.data.access_token;
-    
+
+            localStorage.setItem('REACT_APP_DTP_TOKEN', dtp);
+            localStorage.setItem('REACT_APP_OAUTH2_TOKEN', accessToken);
+
             setAuth({ user, pwd, accessToken });
             setUser('');
             setPwd('');
             setSuccess(true);
+
+            navigate('/home');
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');

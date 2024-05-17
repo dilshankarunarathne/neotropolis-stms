@@ -1,0 +1,26 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navbar-left h2 {
+    font-size: 16px;
+    margin: 20px;
+}
+
+.navbar-right button {
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+button {
+    width: 100%;
+}
+
+.navbar-right {
+    display: flex;
+}
