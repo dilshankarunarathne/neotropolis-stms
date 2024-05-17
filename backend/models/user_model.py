@@ -9,6 +9,7 @@ class User(BaseModel):
     mobile: str | None = None
     first_name: str | None = None
     last_name: str | None = None
+    dtp_token: str | None = None
 
 
 class UserInDB(User):

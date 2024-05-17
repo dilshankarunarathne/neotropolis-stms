@@ -5,6 +5,7 @@ from typing import Annotated
 from fastapi import APIRouter, Form, HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 
+from dtp.dtp_token import generate_dtp_token
 from models.user_model import UserInDB
 
 from auth.authorize import authenticate_user, oauth2_scheme
@@ -69,6 +70,9 @@ async def register_user(
             detail="Username already exists",
         )
     hashed_password = get_password_hash(password)
+
+    dtp_token = generate_dtp_token()
+
     user = UserInDB(
         id=get_next_avail_id(),
         username=username,
@@ -77,12 +81,12 @@ async def register_user(
         is_admin=is_admin,
         mobile=mobile,
         first_name=first_name,
-        last_name=last_name
+        last_name=last_name,
+        dtp_token=dtp_token
     )
     add_new_user(user)
 
-    # TODO: generate a dtp token and return it
-    return user
+    return {"user": user, "dtp_token": dtp_token}
 
 
 @router.post("/login")
