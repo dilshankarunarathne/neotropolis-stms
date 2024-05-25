@@ -1,44 +1,29 @@
-import { BrowserRouter as Router, Route, Routes, useNavigate, Switch} from 'react-router-dom';
-import { useEffect } from 'react';
-import AuthContext from './context/AuthProvider';
-//import Register from './components/pages/Register';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { About } from './components/pages/About';
+import Home from './components/pages/Home';
 import Login from './components/pages/Login';
-import Home from './components/pages/Home'; 
 import Navbar from './components/pages/Navbar';
-//import Adduser from './components/pages/Adduser';
-//import AddAdmin from './components/pages/AddAdmin';
-//import UpdateUser from './components/pages/UpdateUser';
-//import UpdateAdmin from './components/pages/UpdateAdmin';
 
-function Default() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate('/home');
-  }, [navigate]);
-
-  return null;
-}
 
 function App() {
   return (
-      
-      <main className="App">
-        <Routes>
+        <Router>
         <div>
-          <Switch>
-          <Route exact path="/">
-            <Navbar/>
+          <Routes>
+          <Route path="/" element={<Home />} />
+         
+          <Route path="/login">
+            <Login/>
+          </Route>
+
+          <Route path="/About">
+            <About/>
           </Route>
          
-          <Route exact path="/signup">
-            <SignUp/>
-          </Route>
-         
-      </Switch>
+      </Routes>
       </div>
-    </Routes>
-            
-    </main>
+    </Router>
+   
   );
 }
 
